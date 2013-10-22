@@ -1,0 +1,31 @@
+{
+  "name": "fetch-upload-s3",
+  "version": "0.1.0",
+  "description": "fetch an asset (a picture for instance) from a remote server and upload it to S3 (and remove the local copy)",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --timeout 10000 --reporter Spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/saintmac/fetch-upload-s3.git"
+  },
+  "keywords": [
+    "fetch",
+    "remote",
+    "uplod",
+    "s3"
+  ],
+  "author": "Martin Saint-Macary",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/saintmac/fetch-upload-s3/issues"
+  },
+  "dependencies": {
+    "request": "~2.27.0"
+  },
+  "devDependencies": {
+    "chai": "~1.8.1",
+    "mocha": "~1.13.0"
+  }
+}
