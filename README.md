@@ -28,12 +28,13 @@ var FUS3 = require('fetch-upload-s3');
 
 var fus3 = new FUS3('my_aws_bucket');
 fus3.init(function(){
-  this.fus3.do('http://nodejs.org/images/logo.png', 'my_key', function(err){
+  fus3.do('http://nodejs.org/images/logo.png', 'my_key', function(err){
     console.log('file uploaded to S3!');
   };
 });
-
 ```
+
+A temp folder './.tmp/fetch_upload_s3' is used as a proxy. Files are deleted locally as soon as they have been uploaded to S3
 
 
 

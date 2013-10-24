@@ -18,7 +18,7 @@ describe('writing to S3', function(){
     });
 
     it('should create the bucket', function(done){
-      self = this;
+      var self = this;
       this.s3_bucket.create(function(){
         self.s3_bucket.exists(function(exists){
           exists.should.be.true;
@@ -36,7 +36,7 @@ describe('writing to S3', function(){
 
     describe('uploading to the bucket', function(done){
       before(function(done){
-        self.s3_bucket.upload('./.tmp/fetch_upload_s3/npm_logo.png', self.s3_key, done);
+        this.s3_bucket.upload('./.tmp/fetch_upload_s3/npm_logo.png', this.s3_key, done);
       });
 
       it('should use an existing bucket', function(done){
@@ -63,7 +63,7 @@ describe('writing to S3', function(){
       });
 
       it('should delete the file', function(done){
-        self = this;
+        var self = this;
         this.s3_bucket.file_delete(this.s3_key, function() {
           self.s3_bucket.file_exists(self.s3_key, function(exists){
             exists.should.be.false;
@@ -83,7 +83,7 @@ describe('writing to S3', function(){
     });
 
     it('should delete the bucket', function(done){
-      self = this;
+      var self = this;
       this.s3_bucket.delete(function() {
         self.s3_bucket.exists(function(exists){
           exists.should.be.false;

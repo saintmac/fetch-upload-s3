@@ -40,6 +40,13 @@ describe('fetch and upload to S3', function() {
       });
     });
 
+    it('should not keep the local copy', function(done){
+      fs.exists('./.tmp/fetch_upload_s3/'+this.s3_key, function(exists){
+        exists.should.be.false;
+        done();
+      });
+    });
+
     after(function(done){
       this.testing_bucket.file_delete(this.s3_key, done);
     });
