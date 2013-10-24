@@ -1,63 +1,10 @@
 var should = require('chai').should(),
-    download = require('../lib/download'),
-    init = require('../lib/init_tmp'),
-    S3Bucket = require('../lib/bucket'),
-    fs = require('fs'),
-    rimraf = require('rimraf'), //rm -rf equivalent
-    fetch_upload_s3 = require('../');
-
-
-describe('init_tmp', function(){
-  before(function(done){
-    rimraf('./.tmp', function(err) {
-      if (err) {
-        console.log('an error occured while removing ./.tmp: '+err);
-      }
-      done(err);
-    });
-  });
-
-  beforeEach(function(done){
-    init(done);
-  });
-
-  describe('first run', function(){
-    it('should have created ./.tmp/fetch_upload_s3', function(done){
-      fs.exists('./.tmp/fetch_upload_s3', function(exists){
-        exists.should.be.true;
-        done();
-      });
-    });
-  });
-
-  describe('second run', function(){
-    it('it should not timeout', function(done){
-      fs.exists('./.tmp/fetch_upload_s3', function(exists){
-        exists.should.be.true;
-        done();
-      });
-    });
-  });
-
-});
-
-describe('test download', function(){
-  before(function(done){
-    download('https://npmjs.org/static/npm.png', 'npm_logo.png', done);
-  });
-
-  it('should have created the file', function(done) {
-    fs.exists('./.tmp/fetch_upload_s3/npm_logo.png', function(exists){
-      exists.should.be.true;
-      done()
-    });
-  });
-});
+    S3Bucket = require('../lib/bucket');
 
 
 describe('writing to S3', function(){
   before(function(done){
-    this.bucket_name = 'test-node-fetch-uplod-s3'
+    this.bucket_name = 'test-node-bucket'
     this.s3_bucket = new S3Bucket(this.bucket_name);
     done();
   });

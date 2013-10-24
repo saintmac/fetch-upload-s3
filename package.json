@@ -4,7 +4,7 @@
   "description": "fetch an asset (a picture for instance) from a remote server and upload it to S3 (and remove the local copy)",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --timeout 10000 --reporter Spec"
+    "test": "mocha -w --timeout 10000 --reporter Spec"
   },
   "repository": {
     "type": "git",
@@ -23,7 +23,8 @@
   },
   "dependencies": {
     "request": "~2.27.0",
-    "aws-sdk": "~1.9.0"
+    "aws-sdk": "~1.9.0",
+    "async": "~0.2.9"
   },
   "devDependencies": {
     "chai": "~1.8.1",
