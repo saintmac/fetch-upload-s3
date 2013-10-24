@@ -22,10 +22,12 @@
     "url": "https://github.com/saintmac/fetch-upload-s3/issues"
   },
   "dependencies": {
-    "request": "~2.27.0"
+    "request": "~2.27.0",
+    "aws-sdk": "~1.9.0"
   },
   "devDependencies": {
     "chai": "~1.8.1",
-    "mocha": "~1.13.0"
+    "mocha": "~1.13.0",
+    "rimraf": "~2.2.2"
   }
 }
