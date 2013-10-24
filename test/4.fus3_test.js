@@ -30,7 +30,7 @@ describe('fetch and upload to S3', function() {
   describe('do', function(){
     before(function(done){
       this.s3_key = 'node_logo.png';
-      this.fus3.do('http://nodejs.org/images/logo.png', this.bucket_name, this.s3_key, done);
+      this.fus3.do('http://nodejs.org/images/logo.png', this.s3_key, done);
     });
 
     it('should put the file in S3', function(done){
