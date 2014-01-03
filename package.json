@@ -1,6 +1,6 @@
 {
   "name": "fetch-upload-s3",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "fetch an asset (a picture for instance) from a remote server and upload it to S3 (and remove the local copy)",
   "main": "index.js",
   "scripts": {
