@@ -1,7 +1,7 @@
 fetch-upload-s3
 ===============
 
-Fetches an asset (picture for instance) from a remote URL and uploads it to Amazon S3
+Fetches an asset (picture for instance) from a remote URL (or a local file) and uploads it to Amazon S3.
 
 ## install
 
@@ -20,6 +20,8 @@ create an aws_config.json file with the following fields. You can put whatever r
   "region": "eu-west-1"
 }
 ```
+
+You can use different bucket name depending on your environment.
 
 ## use
 
@@ -47,7 +49,8 @@ fus3.init(function(){
 ```
 
 
-A temp folder './.tmp/fetch_upload_s3' is used as a proxy. Files are deleted locally as soon as they have been uploaded to S3
+A temp folder './.tmp/fetch_upload_s3' is used as a proxy.
+Temporary and source files are deleted locally as soon as they have been uploaded to S3
 
 
 
