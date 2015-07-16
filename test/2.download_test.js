@@ -6,7 +6,7 @@ var should = require('chai').should(),
 describe('download', function(){
   describe('for a non 200 url', function() {
       it('should return an error', function(done) {
-          download('https://google.com/static/jklmjklm.png', '404.png', function(err) {
+          download('http://www.google.com/images/srpr/logo11.png', '404.png', function(err) {
               should.exist(err);
               done()
           });
@@ -24,11 +24,11 @@ describe('download', function(){
 
   describe('for a 200 url', function() {
       before(function(done){
-          download('https://npmjs.org/static/npm.png', 'npm_logo.png', done);
+          download('http://www.google.com/images/srpr/logo11w.png', 'google.png', done);
       });
 
       it('should have created the file', function(done) {
-          fs.exists('./.tmp/fetch_upload_s3/npm_logo.png', function(exists){
+          fs.exists('./.tmp/fetch_upload_s3/google.png', function(exists){
               exists.should.be.true;
               done()
           });
