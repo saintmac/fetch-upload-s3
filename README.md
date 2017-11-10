@@ -11,15 +11,13 @@ npm install fetch-upload-s3
 
 ## setup
 ### credentials
-create an aws_config.json file with the following fields. You can put whatever region you like.
+Create app environment variables and set
 
-```json
-{
-  "accessKeyId": "YOUR AWS ACCESS KEY",
-  "secretAccessKey": "SECRET OF YOUR AWS ACCESS KEY",
-  "region": "eu-west-1"
-}
-```
+`AWS_ACCESS_KEY_ID`
+
+`AWS_SECRET_ACCESS_KEY`
+
+`AWS_REGION`
 
 You can use different bucket name depending on your environment.
 
@@ -40,7 +38,7 @@ fus3.init(function(){
 
 // for upload File :
 fus3.init(function(){
-  fus3.uploadFile(absoluteFilePath, 'my_key', 
+  fus3.uploadFile(absoluteFilePath, 'my_key',
     function(err, data){
     console.log('file uploaded to S3!');
     console.log(data);
@@ -51,7 +49,3 @@ fus3.init(function(){
 
 A temp folder './.tmp/fetch_upload_s3' is used as a proxy.
 Temporary and source files are deleted locally as soon as they have been uploaded to S3
-
-
-
-
