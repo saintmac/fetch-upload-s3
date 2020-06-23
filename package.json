@@ -1,6 +1,6 @@
 {
   "name": "fetch-upload-s3",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "fetch an asset (a picture for instance) from a remote server and upload it to S3 (and remove the local copy). Or upload a local file on S3",
   "main": "index.js",
   "scripts": {
@@ -22,9 +22,9 @@
     "url": "https://github.com/saintmac/fetch-upload-s3/issues"
   },
   "dependencies": {
-    "request": "~2.27.0",
-    "aws-sdk": "~1.9.0",
-    "async": "~0.2.9"
+    "async": "~0.2.9",
+    "aws-sdk": "^2.702.0",
+    "request": "~2.27.0"
   },
   "devDependencies": {
     "chai": "~1.8.1",
