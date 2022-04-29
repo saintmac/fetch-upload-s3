@@ -22,7 +22,7 @@
     "url": "https://github.com/saintmac/fetch-upload-s3/issues"
   },
   "dependencies": {
-    "async": "~0.2.9",
+    "async": "~2.6.4",
     "aws-sdk": "^2.702.0",
     "request": "~2.27.0"
   },
