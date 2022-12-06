@@ -24,7 +24,7 @@
   "dependencies": {
     "async": "~0.2.9",
     "aws-sdk": "^2.702.0",
-    "request": "~2.27.0"
+    "request": "~2.88.2"
   },
   "devDependencies": {
     "chai": "~1.8.1",
