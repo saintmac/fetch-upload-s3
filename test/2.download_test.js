@@ -142,6 +142,38 @@ describe('download', function(){
     });
   });
 
+  describe('when an existing file cannot be opened for writing', function() {
+    var readonly_path = './.tmp/fetch_upload_s3/readonly.png';
+
+    before(function(done) {
+      fs.writeFile(readonly_path, 'keep me', function(err) {
+        if (err) { return done(err); }
+        fs.chmod(readonly_path, 292, done); // 0444
+      });
+    });
+
+    after(function(done) {
+      fs.chmod(readonly_path, 420, function() { // 0644
+        fs.unlink(readonly_path, function() { done(); });
+      });
+    });
+
+    it('should return the error and leave the existing file alone', function(done) {
+      if (process.getuid && process.getuid() === 0) {
+        return this.skip ? this.skip() : done(); // root can open a read-only file
+      }
+      download(base_url + '/picture.png', 'readonly.png', function(err) {
+        should.exist(err);
+        err.code.should.equal('EACCES');
+        fs.readFile(readonly_path, 'utf8', function(err, content) {
+          should.not.exist(err);
+          content.should.equal('keep me');
+          done();
+        });
+      });
+    });
+  });
+
   describe('with a timeout', function() {
     it('should return an error when the server does not answer in time', function(done) {
       download(base_url + '/hang.png', 'hang.png', {timeout: 100}, function(err) {
