@@ -15,6 +15,12 @@ describe('download', function(){
         res.writeHead(200, {'Content-Type': 'image/png'});
         res.end('not really a png');
       }
+      else if (req.url === '/cut.png') {
+        // headers and part of the body, then the connection drops
+        res.writeHead(200, {'Content-Type': 'image/png', 'Content-Length': 100000});
+        res.write('partial');
+        setImmediate(function() { res.socket.destroy(); });
+      }
       else if (req.url === '/hang.png') {
         // accepts the connection and never answers
       }
@@ -110,6 +116,18 @@ describe('download', function(){
       fs.exists('./.tmp/fetch_upload_s3/refused.png', function(exists){
         exists.should.be.false;
         done();
+      });
+    });
+  });
+
+  describe('when the connection drops after the headers', function() {
+    it('should return an error and leave no file once called back', function(done) {
+      download(base_url + '/cut.png', 'cut.png', function(err) {
+        should.exist(err);
+        fs.exists('./.tmp/fetch_upload_s3/cut.png', function(exists){
+          exists.should.be.false;
+          done();
+        });
       });
     });
   });
