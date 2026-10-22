@@ -47,5 +47,14 @@ fus3.init(function(){
 ```
 
 
+### options
+
+```javascript
+// fail the fetch if the remote server does not answer within 30s
+var fus3 = new FUS3('my_aws_bucket', {timeout: 30000});
+```
+
+Network errors (connection refused or timed out, DNS failure...), non-200 responses and errors writing the temp file are passed to the `do` callback; they are never thrown.
+
 A temp folder './.tmp/fetch_upload_s3' is used as a proxy.
 Temporary and source files are deleted locally as soon as they have been uploaded to S3

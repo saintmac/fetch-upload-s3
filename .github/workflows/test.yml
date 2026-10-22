@@ -1,0 +1,28 @@
+name: test
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: [18, 20, 22]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+      - run: npm ci
+      # 3.bucket_test.js and 4.fus3_test.js need real S3 credentials: only the offline tests run here
+      # `npm test` runs mocha in watch mode, and mocha 1.x's `mocha` wrapper exits 0 without
+      # running anything on current node versions: call _mocha directly
+      - run: node node_modules/mocha/bin/_mocha --timeout 10000 --reporter spec test/1.init_tmp.js test/2.download_test.js
